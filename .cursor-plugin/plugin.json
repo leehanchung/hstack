@@ -1,0 +1,24 @@
+{
+  "name": "hstack",
+  "displayName": "HStack Skills",
+  "description": "Personal agent skills for writing, coaching, and technical strategy.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Han Lee",
+    "email": "lee.hanchung@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "coaching",
+    "ml-papers",
+    "copy-editing",
+    "tech-strategy",
+    "executive-coaching",
+    "book-writing"
+  ],
+  "skills": "./skills/",
+  "rules": "./rules/",
+  "agents": "./agents/",
+  "commands": "./commands/"
+}

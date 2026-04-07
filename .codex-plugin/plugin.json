@@ -1,0 +1,28 @@
+{
+  "name": "hstack",
+  "version": "1.0.0",
+  "description": "Personal agent skills for writing, coaching, and technical strategy. Includes ML paper writing, copy editing, executive coaching, O'Reilly Radar analysis, Manning book authoring, and data/AI strategy frameworks.",
+  "author": {
+    "name": "Han Lee",
+    "email": "lee.hanchung@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "coaching",
+    "ml-papers",
+    "copy-editing",
+    "tech-strategy",
+    "executive-coaching",
+    "book-writing"
+  ],
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "interface": {
+    "displayName": "HStack Skills",
+    "shortDescription": "Writing, coaching, and technical strategy skills",
+    "longDescription": "A curated collection of agent skills for ML/AI paper writing, copy editing, executive coaching, O'Reilly Radar-style analysis, Manning book authoring, and data/AI tech strategy. Each skill includes detailed workflows, reference materials, and domain-specific best practices.",
+    "developerName": "Han Lee",
+    "category": "productivity"
+  }
+}

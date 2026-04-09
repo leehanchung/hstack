@@ -9,7 +9,7 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 | Skill | Description |
 |-------|-------------|
 | `coaching-methodology` | Executive coaching frameworks: GROW model, NVC, active listening, co-founder dynamics |
-| `copy-editor` | Professional copy editing, grammar, and style guide |
+| `copy-editing` | Professional copy editing, grammar, and style guide |
 | `cto-executive-coaching` | Senior Director → CTO transition coaching with assessment tools |
 | `data-ai-tech-strategy` | Tech strategy and engineering principles for Data/AI/ML organizations |
 | `manning-tech-book-writing` | Manning Publications style, chapter structure, and writing standards |

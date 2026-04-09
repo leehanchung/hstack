@@ -1,5 +1,5 @@
 ---
-name: copy-editor
+name: copy-editing
 description: Professional copy editing toolkit for improving written content. Use when users request copy editing, proofreading, grammar checking, style improvements, or document polishing. Provides comprehensive editing workflows, style guides, and common error patterns.
 allowed-tools: "Read,Write,Edit,Bash,Glob,Grep,WebSearch,WebFetch"
 ---

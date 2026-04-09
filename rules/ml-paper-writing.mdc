@@ -1,5 +1,5 @@
 ---
-description: Write publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM. Use when drafting papers from research repos, structuring arguments, verifying citations, formatting for conferences, or preparing camera-ready submissions. Includes citation verification workflows and LaTeX guidance.
+description: Write publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM. Use when drafting papers from research repos, structuring arguments, verifying citations, formatting for conferences, preparing camera-ready submissions, or improving paper clarity and rigor. Includes citation verification workflows, LaTeX guidance, and the full writing process from compressing research into claims through final submission.
 globs:
   - "**/*.tex"
   - "**/*.bib"

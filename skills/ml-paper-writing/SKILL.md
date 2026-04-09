@@ -1,6 +1,6 @@
 ---
 name: ml-paper-writing
-description: Write publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM. Use when drafting papers from research repos, structuring arguments, verifying citations, formatting for conferences, or preparing camera-ready submissions. Includes citation verification workflows and LaTeX guidance.
+description: Write publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM. Use when drafting papers from research repos, structuring arguments, verifying citations, formatting for conferences, preparing camera-ready submissions, or improving paper clarity and rigor. Includes citation verification workflows, LaTeX guidance, and the full writing process from compressing research into claims through final submission.
 allowed-tools: "Read,Write,Edit,Bash,Glob,Grep,WebSearch,WebFetch"
 ---
 
@@ -66,6 +66,41 @@ Every successful ML paper centers on what Neel Nanda calls "the narrative": a sh
 | **The So What** | Why readers should care | Connection to recognized community problems |
 
 **If you cannot state your contribution in one sentence, you don't yet have a paper.**
+
+### The Compression Imperative
+
+Readers take away at most a few sentences. Choose those sentences carefully. Compress your research into claims, prioritize ruthlessly, and accept that detail must move to appendices. If you don't deliberately de-prioritize some details, something important gets dropped instead.
+
+---
+
+## Writing Process: Compress Then Iteratively Expand
+
+### Phase 1: Compress
+
+Before writing, ruthlessly compress your work:
+
+1. Verbally describe the research to someone; ask what was most interesting
+2. Plan a 15-minute talk
+3. Write down the 1-3 concrete claims you believe to be true
+4. List the 1-3 key experiments supporting each claim
+
+**Critical evaluation:**
+- Do experiments genuinely support claims?
+- Could evidence be true but claim false?
+- What are the limitations and potential misinterpretations?
+
+### Phase 2: Iteratively Expand
+
+Progress through these stages, getting feedback after each:
+
+1. **Bullet point narrative** → Captures the core story
+2. **Bullet point introduction outline** → Claims, motivation, high-level evidence
+3. **Full paper outline** → All sections with clear purpose
+4. **Draft figures** → Results that support the narrative
+5. **First draft prose** → Full technical detail
+6. **Polish** → Iterate on clarity, tightness, figure quality
+
+**Time allocation rule:** Spend approximately **equal time** on each of: (1) the abstract, (2) the introduction, (3) the figures, and (4) everything else combined. Most reviewers form judgments before reaching your methods section.
 
 ---
 
@@ -137,12 +172,16 @@ Paper Writing Progress:
 
 **Delete** generic openings like "Large language models have achieved remarkable success..."
 
+See [references/abstract-examples.md](references/abstract-examples.md) for annotated examples.
+
 ### Introduction Structure (1-1.5 pages max)
 
 - 2-4 bullet contribution list (max 1-2 lines each)
 - Clear problem statement
 - Brief approach overview
 - Methods should start by page 2-3
+
+See [references/paper-structure.md](references/paper-structure.md) for detailed section-by-section guidance.
 
 ### Experiments Section
 
@@ -194,6 +233,36 @@ See [references/citation-workflow.md](references/citation-workflow.md) for compl
 
 ---
 
+## Evidence and Rigor
+
+### Quality Over Quantity
+
+One compelling, hard-to-deny experiment beats many mediocre ones. Diverse lines of evidence (different methodologies pointing to same conclusion) are more robust than similar experiments repeated.
+
+### Red-Team Your Narrative
+
+Assume you've made a mistake—where is it? Assume there's a hole in your case—what is it? Spend substantial time trying to break your own claims.
+
+### Baselines Matter
+
+Put meaningful effort into making baselines strong. A "competitor" method often improves dramatically with proper tuning. The question is "Should practitioners use X?" not "Does X work at all?"
+
+### Claim Strength Levels
+
+Match claim strength to evidence strength:
+
+| Claim Type | Example | Evidence Required |
+|------------|---------|-------------------|
+| Existence proof | "X can happen" | One clear example |
+| Systematic | "X generally happens" | Multiple contexts, quantitative |
+| Hedged | "Evidence suggests X" | Suggestive but incomplete |
+| Narrow | "X works for Y under Z" | Controlled conditions |
+| Guarantee | "X always holds" | Formal proof (rare in ML) |
+
+See [references/evidence-rigor.md](references/evidence-rigor.md) for detailed experimental guidance.
+
+---
+
 ## Conference Requirements
 
 | Conference | Page Limit | Extra Camera-Ready | Key Requirement |
@@ -209,8 +278,10 @@ See [references/citation-workflow.md](references/citation-workflow.md) for compl
 - Double-blind review (anonymize submissions)
 - References don't count toward page limit
 - LaTeX required for all venues
+- PDF with Type-1 fonts embedded
 
 See [references/checklists.md](references/checklists.md) for detailed conference checklists.
+See [references/formatting.md](references/formatting.md) for venue-specific formatting requirements.
 
 ---
 
@@ -226,20 +297,28 @@ See [references/checklists.md](references/checklists.md) for detailed conference
 | **Old before new** | Familiar info → unfamiliar info | Link backward, then introduce new |
 | **Action in verb** | Use verbs, not nominalizations | "We analyzed" not "We performed an analysis" |
 
-### Word Choice (Zachary Lipton)
+### Word Choice
+
+| Avoid | Prefer |
+|-------|--------|
+| utilize | use |
+| methodology | method |
+| leverage | use |
+| novel (overused) | new, first |
+| significant (ambiguous) | [specific metric] |
+| state-of-the-art | [cite specific prior work] |
+| clearly, obviously | [let evidence speak] |
+
+### Micro-Level Tips
 
 - **Be specific**: "accuracy" or "latency" not "performance"
 - **Eliminate hedging**: Drop "may" and "can" unless genuinely uncertain
-- **Avoid incremental vocabulary**: "develop" not "combine" or "modify"
-- **Delete intensifiers**: "tight approximation" not "very tight approximation"
-
-### Micro-Level Tips (Ethan Perez)
-
 - **Minimize pronouns**: "This result shows..." not "This shows..."
-- **Verbs early**: Position verbs near sentence start
 - **Delete filler words**: "actually," "basically," "essentially," "quite"
+- **Active voice**: "We show X" not "X is shown"
 
 See [references/writing-guide.md](references/writing-guide.md) for complete writing philosophy.
+See [references/style-guide.md](references/style-guide.md) for comprehensive style rules.
 
 ---
 
@@ -287,10 +366,22 @@ Baseline & 85.2 & 45ms \\
 - **Colorblind-safe palettes**: Okabe-Ito or Paul Tol
 - **Self-contained captions**: Reader should understand without main text
 - **No title inside figure**: Caption serves this function
+- Minimum 0.5pt line thickness
+- Ensure readability when printed in grayscale
 
 ---
 
-## Common Issues
+## Common Pitfalls
+
+**The Illusion of Transparency**: You've spent months on this. Readers haven't. Define everything. Situate your work explicitly. Address misconceptions you've encountered.
+
+**Unnecessary Complexity**: Verbosity signals weakness, not sophistication. If readers don't understand, they ignore or assume BS. The best papers apply simple techniques carefully and well.
+
+**Neglecting Writing**: Switch to writing mode at least one month before deadline. Iterate extensively. Get feedback at every stage.
+
+**Novelty Obsession**: Novelty means expanding knowledge, not just being shiny. Rigorous replications, negative results, and careful methodology improvements are genuine contributions.
+
+**Cherry-Picking**: Present representative examples, not just the best ones. For qualitative evidence, show randomly selected examples alongside curated ones. Track which analyses were pre-specified vs. post-hoc.
 
 **Abstract too generic**: Delete first sentence if it could be prepended to any ML paper.
 
@@ -299,18 +390,6 @@ Baseline & 85.2 & 45ms \\
 **Experiments lack claims**: Add "This experiment tests whether [specific claim]..."
 
 **Missing statistics**: Always include error bars, number of runs, statistical tests.
-
----
-
-## Time Allocation (Neel Nanda)
-
-Spend approximately **equal time** on each of:
-1. The abstract
-2. The introduction
-3. The figures
-4. Everything else combined
-
-Most reviewers form judgments before reaching your methods section.
 
 ---
 
@@ -327,14 +406,39 @@ See [references/reviewer-guidelines.md](references/reviewer-guidelines.md) for d
 
 ---
 
+## Checklist Before Submission
+
+See [references/submission-checklist.md](references/submission-checklist.md) for the complete checklist.
+
+**Critical items:**
+- [ ] Claims are specific, concrete, and supported by evidence
+- [ ] Abstract stands alone and conveys the narrative
+- [ ] Introduction ends with clear contributions list
+- [ ] All figures have informative captions
+- [ ] Limitations discussed honestly
+- [ ] No author-identifying information
+- [ ] PDF uses only Type-1 fonts
+- [ ] Page limit respected (check carefully)
+- [ ] References complete with page numbers
+- [ ] Code/data anonymized if submitted
+- [ ] All citations verified (no hallucinated references)
+
+---
+
 ## Reference Documents
 
 | Document | Contents |
 |----------|----------|
-| [writing-guide.md](references/writing-guide.md) | Gopen & Swan 7 principles, micro-tips, word choice |
-| [citation-workflow.md](references/citation-workflow.md) | Citation APIs, Python code, BibTeX management |
+| [abstract-examples.md](references/abstract-examples.md) | Annotated abstract examples |
 | [checklists.md](references/checklists.md) | NeurIPS 16-item, ICML, ICLR, ACL requirements |
+| [citation-workflow.md](references/citation-workflow.md) | Citation APIs, Python code, BibTeX management |
+| [evidence-rigor.md](references/evidence-rigor.md) | Experimental design and red-teaming |
+| [formatting.md](references/formatting.md) | Venue-specific formatting requirements |
+| [paper-structure.md](references/paper-structure.md) | Detailed section-by-section guidance |
 | [reviewer-guidelines.md](references/reviewer-guidelines.md) | Evaluation criteria, scoring, rebuttals |
+| [style-guide.md](references/style-guide.md) | Comprehensive writing style rules |
+| [submission-checklist.md](references/submission-checklist.md) | Pre-submission checklist |
+| [writing-guide.md](references/writing-guide.md) | Gopen & Swan 7 principles, micro-tips, word choice |
 
 ---
 

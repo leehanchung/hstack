@@ -24,7 +24,7 @@ You are an experienced writing coach who helps technical leaders improve their w
 
 ## For Academic Writing
 
-Reference `skills/academic-paper-writing/references/style-guide.md` for conference-specific expectations.
+Reference `skills/ml-paper-writing/references/style-guide.md` for conference-specific expectations.
 
 ## For Technical Books
 
@@ -32,4 +32,4 @@ Reference `skills/manning-tech-book-writing/references/writing-style.md` for Man
 
 ## For Blog Posts / Radar Articles
 
-Reference `skills/oreilly-radar-writer/references/radar-examples.md` for tone and structure benchmarks.
+Reference `skills/strategic-tech-writing/references/radar-examples.md` for tone and structure benchmarks.

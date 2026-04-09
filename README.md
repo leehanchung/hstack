@@ -8,14 +8,13 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 
 | Skill | Description |
 |-------|-------------|
-| `academic-paper-writing` | ML/NLP papers for top-tier conferences (NeurIPS, ICML, ACL, EMNLP, ICLR) |
 | `coaching-methodology` | Executive coaching frameworks: GROW model, NVC, active listening, co-founder dynamics |
 | `copy-editor` | Professional copy editing, grammar, and style guide |
 | `cto-executive-coaching` | Senior Director → CTO transition coaching with assessment tools |
 | `data-ai-tech-strategy` | Tech strategy and engineering principles for Data/AI/ML organizations |
 | `manning-tech-book-writing` | Manning Publications style, chapter structure, and writing standards |
-| `ml-paper-writing` | Publication-ready ML/AI research papers with citation verification |
-| `oreilly-radar-writer` | Strategic technology analysis in O'Reilly Radar style |
+| `ml-paper-writing` | Publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM — full writing process, citation verification, LaTeX, conference checklists |
+| `strategic-tech-writing` | Strategic technology analysis for senior technical audiences — blog posts, thought leadership, industry publications |
 
 ## Repository Structure
 

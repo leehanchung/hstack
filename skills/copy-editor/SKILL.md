@@ -13,8 +13,11 @@ Professional copy editing toolkit for comprehensive document improvement.
 When a user requests copy editing, follow this process:
 
 1. **Initial Assessment** - Identify the document type and editing level needed
-2. **Systematic Review** - Apply the appropriate editing checklist
-3. **Provide Feedback** - Deliver corrections with explanations
+2. **AI Writing Audit** - Scan for AI-generated writing patterns (see `references/avoid-ai-writing.md`)
+3. **Systematic Review** - Apply the appropriate editing checklist
+4. **Provide Feedback** - Deliver corrections with explanations
+
+> **Important**: Every standard and heavy copy edit must include an AI writing pattern scan. Load `references/avoid-ai-writing.md` for the full 36-pattern checklist, 109-word replacement table, and severity tiers (P0/P1/P2). If 5+ vocabulary flags span 3+ pattern categories with uniform rhythm, recommend a full rewrite rather than patching.
 
 ## Editing Levels
 
@@ -33,6 +36,7 @@ All light edit tasks plus:
 - Consistency in style and tone
 - Clarity enhancements
 - Redundancy elimination
+- AI writing pattern scan (P0 and P1 flags)
 
 ### Heavy Copy Edit (Line Editing)
 All standard edit tasks plus:
@@ -41,6 +45,7 @@ All standard edit tasks plus:
 - Voice and tone adjustments
 - Substantive clarity rewrites
 - Content organization
+- Full AI writing audit (P0, P1, and P2 flags)
 
 ## Core Editing Workflow
 
@@ -107,6 +112,15 @@ All standard edit tasks plus:
 - Unclear antecedents
 - Passive voice overuse
 - Buried leads
+
+#### AI Writing Patterns
+Scan for the 36 patterns documented in `references/avoid-ai-writing.md`. Key checks:
+- **Vocabulary**: Tier 1 words (always replace), Tier 2 (flag when 2+ per paragraph), Tier 3 (flag at high density)
+- **Content**: Significance inflation, vague attributions, promotional language, formulaic challenges, novelty inflation, superficial -ing analyses, notability name-dropping
+- **Language**: Copula avoidance, synonym cycling, template phrases, filler phrases, false ranges, parenthetical hedging
+- **Structure**: Formatting overuse (em dashes, bold, emoji headers), transition phrase crutches, title case headings, numbered list inflation, false concession, rhetorical question openers, inline-header lists, sentence/structural uniformity
+- **Communication**: Chatbot artifacts, "let's" constructions, cutoff disclaimers, generic conclusions, emotional flatline, reasoning chain artifacts, sycophantic tone, acknowledgment loops, confidence calibration issues
+- **Meta**: Excessive structure, rhythm uniformity, over-polishing, rewrite-vs-patch threshold
 
 #### Consistency Checks
 - Number formatting (numerals vs. spelled out)
@@ -199,6 +213,7 @@ Complete edited text (when requested)
 - **For detailed grammar rules**: See `references/grammar_guide.md`
 - **For style variations**: See `references/style_comparisons.md`
 - **For common errors database**: See `references/common_errors.md`
+- **For AI writing pattern detection**: See `references/avoid-ai-writing.md` — includes all 36 patterns, the 109-word replacement table (3 tiers), severity levels (P0/P1/P2), context profiles by content type, and rewrite-vs-patch threshold. Source: [conorbronsdon/avoid-ai-writing](https://github.com/conorbronsdon/avoid-ai-writing) (MIT)
 
 ## Response Templates
 

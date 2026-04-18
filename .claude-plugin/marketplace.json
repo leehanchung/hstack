@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "hstack",
-      "source": ".",
+      "source": "./",
       "description": "Writing, coaching, and strategy skills for technical leaders",
       "version": "1.0.0"
     }

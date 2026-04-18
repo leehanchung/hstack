@@ -1,10 +1,10 @@
 ---
-name: coaching-methodology
-description: Executive coaching methodology for technical leaders. Provides frameworks for coaching conversations (vs. advising), active listening (3 levels), powerful questions (GROW model), difficult conversations (NVC framework), avoiding burnout (gifts assessment), and co-founder dynamics. Use when coaching team members, navigating conflict, having difficult conversations, or helping others unlock their own solutions.
+name: executive-coaching
+description: Executive coaching methodology for technical leaders. Provides frameworks for coaching conversations (vs. advising), active listening (3 levels), powerful questions (GROW model), difficult conversations (NVC framework), avoiding burnout (gifts assessment), co-founder dynamics, and CTO transition coaching. Use when coaching team members, navigating conflict, having difficult conversations, helping others unlock their own solutions, or guiding Senior Director → CTO transitions.
 allowed-tools: "Read,Write,Edit,Bash,Glob,Grep,WebSearch,WebFetch"
 ---
 
-# Coaching Methodology for Technical Leaders
+# Executive Coaching for Technical Leaders
 
 ## Core Principle: Coach vs. Advise
 
@@ -101,6 +101,22 @@ Look for patterns after two weeks. What are you doing when energized vs. deplete
 
 **Hard truth**: It's no one else's job to help you live in your gifts. Your manager's job is helping you perform in your current role. Your job is navigating your career.
 
+## CTO Transition Coaching
+
+For Senior Director → CTO transition in large enterprise, see `references/cto-transition.md` for the complete framework covering:
+- Assessment and goal setting (360 feedback, scope analysis, enterprise readiness)
+- Competency development (strategic thinking, executive presence, business acumen, org leadership at scale)
+- Stakeholder management (CEO/CFO/board relationships, coalition building)
+- 90-day readiness projects
+- Measurement and feedback loops
+- Session cadence and coaching methods
+
+Quick start:
+1. Run initial assessment: `python scripts/cto_assessment.py`
+2. Review competencies in `references/cto-competencies.md`
+3. Create 90-day plan using `references/goal-templates.md`
+4. Begin stakeholder mapping with `references/stakeholder-strategies.md`
+
 ## Co-Founder Dynamics
 
 See `references/cofounder-dynamics.md` for detailed frameworks on:
@@ -132,3 +148,15 @@ See `references/cofounder-dynamics.md` for detailed frameworks on:
 - "This is hard because something important is at stake and there's something to learn"
 - Inner conflict = two parts at war = learning opportunity
 - Quality of relationships = quality of life
+
+## Resources
+
+### References
+- `references/cto-transition.md` — Complete CTO coaching framework
+- `references/cto-competencies.md` — Detailed competency model
+- `references/stakeholder-strategies.md` — Enterprise stakeholder management
+- `references/goal-templates.md` — Sample development goals
+- `references/cofounder-dynamics.md` — Co-founder relationship frameworks
+
+### Assessment Tools
+- `scripts/cto_assessment.py` — Initial readiness assessment

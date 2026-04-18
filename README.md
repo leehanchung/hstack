@@ -8,13 +8,12 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 
 | Skill | Description |
 |-------|-------------|
-| `coaching-methodology` | Executive coaching frameworks: GROW model, NVC, active listening, co-founder dynamics |
-| `copy-editing` | Professional copy editing, grammar, and style guide |
-| `cto-executive-coaching` | Senior Director → CTO transition coaching with assessment tools |
+| `copy-editing` | Professional copy editing, grammar, style guide, AI writing pattern detection, and verbosity diagnosis |
 | `data-ai-tech-strategy` | Tech strategy and engineering principles for Data/AI/ML organizations |
+| `executive-coaching` | Executive coaching frameworks: GROW model, NVC, active listening, burnout prevention, co-founder dynamics, CTO transition |
 | `manning-tech-book-writing` | Manning Publications style, chapter structure, and writing standards |
 | `ml-paper-writing` | Publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM — full writing process, citation verification, LaTeX, conference checklists |
-| `strategic-tech-writing` | Strategic technology analysis for senior technical audiences — blog posts, thought leadership, industry publications |
+| `tech-writing` | Strategic tech blog posts and industry analysis — short-form (800-1,500 words) and long-form (2,000-4,000 words) with concision rules and AI pattern avoidance |
 
 ## Repository Structure
 

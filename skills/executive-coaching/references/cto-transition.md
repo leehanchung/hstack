@@ -1,17 +1,6 @@
----
-description: Executive coaching framework for transitioning from Senior Director to CTO in large enterprises (10k+ employees). Provides structured coaching methodology, assessment tools, stakeholder management strategies, and competency development focused on C-suite technical leadership. Includes enterprise-specific guidance for scaling from managing 25 engineers to leading organization-wide technology strategy, vision setting, and executive presence development.
-alwaysApply: false
----
+# CTO Transition Coaching Framework
 
-# CTO Executive Coaching Framework
-
-## Quick Start
-
-For Senior Director → CTO transition in large enterprise:
-1. Run initial assessment: `python scripts/cto_assessment.py`
-2. Review current state vs CTO competencies in `references/cto-competencies.md`
-3. Create 90-day development plan using templates
-4. Begin stakeholder mapping for enterprise influence
+Complete framework for Senior Director → CTO transition in large enterprises (10k+ employees).
 
 ## Core Coaching Process
 
@@ -35,11 +24,9 @@ Create SMART goals across three horizons:
 - **Short-term (90 days)**: Strategic project leadership
 - **Long-term (6-12 months)**: CTO readiness demonstrations
 
-See `references/goal-templates.md` for enterprise-specific examples.
+See `goal-templates.md` for enterprise-specific examples.
 
 ### Phase 2: Competency Development (Ongoing)
-
-Focus areas for Senior Director → CTO transition:
 
 #### 1. Strategic Thinking (from team to enterprise)
 - Shift from managing 25 engineers to influencing 500+ technologists
@@ -57,7 +44,7 @@ Focus areas for Senior Director → CTO transition:
 - Public speaking and external representation
 
 **Development approach:**
-- Record and review presentation style (use `scripts/presentation_review.py`)
+- Record and review presentation style
 - Practice executive briefings (3-minute rule for complex topics)
 - Media training for external representation
 
@@ -77,8 +64,6 @@ Current: 25 direct/indirect reports → Target: 500+ organization
 - Culture and change management at enterprise scale
 - Managing through multiple layers of leadership
 
-See `references/scale-leadership.md` for detailed transition strategies.
-
 ### Phase 3: Stakeholder Management
 
 #### Enterprise Stakeholder Map
@@ -89,7 +74,7 @@ Critical relationships for CTO success:
 4. **Board members**: Technology education, risk management
 5. **External partners**: Vendor management, industry presence
 
-Use `references/stakeholder-strategies.md` for engagement tactics.
+Use `stakeholder-strategies.md` for engagement tactics.
 
 #### Building Coalition Support
 - Identify 5 key sponsors for CTO advancement
@@ -121,8 +106,6 @@ Track progress monthly:
 - Executive visibility events (target: 1-2 per month)
 - Direct influence scope (target: expand from 25 to 100+ in 6 months)
 
-Use `scripts/progress_tracker.py` to monitor advancement.
-
 #### Feedback Loops
 - Monthly 1:1 with current manager/sponsor
 - Quarterly 360 review with expanded stakeholder group
@@ -143,26 +126,6 @@ Use `scripts/progress_tracker.py` to monitor advancement.
 - Focusing only on technology without business connection
 - Not building peer relationships early enough
 - Waiting for permission instead of taking initiative
-
-## Resources
-
-### Core References
-- `references/cto-competencies.md` - Detailed competency framework
-- `references/stakeholder-strategies.md` - Enterprise stakeholder management
-- `references/scale-leadership.md` - Scaling from 25 to 500+ person organization
-- `references/executive-communication.md` - C-suite and board communication
-- `references/goal-templates.md` - Sample development goals
-
-### Assessment Tools
-- `scripts/cto_assessment.py` - Initial readiness assessment
-- `scripts/360_feedback.py` - Stakeholder feedback collection
-- `scripts/progress_tracker.py` - Development progress monitoring
-- `scripts/presentation_review.py` - Executive presence evaluation
-
-### Templates
-- `assets/90-day-plan.md` - CTO readiness plan template
-- `assets/stakeholder-map.xlsx` - Stakeholder analysis template
-- `assets/executive-brief-template.pptx` - Board presentation template
 
 ## Coaching Approach
 
@@ -185,22 +148,6 @@ Use `scripts/progress_tracker.py` to monitor advancement.
 - **Case analysis**: Review CTO-level decisions and scenarios
 - **Peer learning**: Connect with other CTOs and senior leaders
 - **Action learning**: Real projects with coaching support
-
-## Quick Reference Commands
-
-```bash
-# Run initial assessment
-python scripts/cto_assessment.py
-
-# Generate stakeholder map
-python scripts/stakeholder_analysis.py
-
-# Track weekly progress
-python scripts/progress_tracker.py --week <number>
-
-# Prepare for executive presentation
-python scripts/presentation_prep.py --audience "board"
-```
 
 ## When to Engage Specialist Support
 

@@ -377,6 +377,8 @@ Baseline & 85.2 & 45ms \\
 
 **Unnecessary Complexity**: Verbosity signals weakness, not sophistication. If readers don't understand, they ignore or assume BS. The best papers apply simple techniques carefully and well.
 
+**AI Writing Patterns**: If any prose was LLM-assisted, run the 36-pattern audit in `../copy-editing/references/avoid-ai-writing.md`. Reviewers increasingly flag AI-sounding prose. Pay special attention to vocabulary (Tier 1 words like "leverage," "robust," "utilize"), structural uniformity, and significance inflation.
+
 **Neglecting Writing**: Switch to writing mode at least one month before deadline. Iterate extensively. Get feedback at every stage.
 
 **Novelty Obsession**: Novelty means expanding knowledge, not just being shiny. Rigorous replications, negative results, and careful methodology improvements are genuine contributions.

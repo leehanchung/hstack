@@ -142,6 +142,7 @@ For complete Chapter 1 requirements, see [references/chapter-1-guidelines.md](re
 - Long theoretical introductions
 - Feature lists without context
 - Code without explanation
+- AI writing patterns — if any section was LLM-assisted, run the audit in `../copy-editing/references/avoid-ai-writing.md`
 
 ### Fix These Issues
 - **Stacked headings** - Always have text between

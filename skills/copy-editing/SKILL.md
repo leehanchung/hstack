@@ -113,6 +113,16 @@ All standard edit tasks plus:
 - Passive voice overuse
 - Buried leads
 
+#### Verbosity and Structural Repetition
+These issues are the most common complaint from readers and the hardest for writers to self-diagnose:
+
+- **Section-level redundancy**: Do two or more sections make the same argument with different examples? If the reader got the point in section 1, section 3 is padding. Merge or cut.
+- **Extended analogy overuse**: One extended metaphor or historical parallel per piece is powerful. Multiple instances of the same analogy structure (setup → historical context → modern parallel → kicker) repeated across sections reads as formulaic.
+- **Generic example lists**: Lists like "PMs do X. Marketing does Y. Sales does Z." are space-filling. Replace with one specific, concrete example.
+- **Bread text**: Paragraphs that exist to pad word count. Test: can this paragraph be summarized in one sentence without loss? If yes, it should be one sentence or deleted.
+- **Transitional padding**: Paragraphs that add no information ("But the story doesn't end there..." or "The implications are far-reaching..."). Cut them.
+- **Density test**: Every paragraph should contain information or insight not already conveyed by a prior paragraph. Flag any that fail.
+
 #### AI Writing Patterns
 Scan for the 36 patterns documented in `references/avoid-ai-writing.md`. Key checks:
 - **Vocabulary**: Tier 1 words (always replace), Tier 2 (flag when 2+ per paragraph), Tier 3 (flag at high density)

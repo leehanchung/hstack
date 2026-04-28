@@ -32,4 +32,4 @@ Reference `skills/manning-tech-book-writing/references/writing-style.md` for Man
 
 ## For Blog Posts / Radar Articles
 
-Reference `skills/strategic-tech-writing/references/radar-examples.md` for tone and structure benchmarks.
+Reference `skills/tech-writing/references/radar-examples.md` for tone and structure benchmarks.

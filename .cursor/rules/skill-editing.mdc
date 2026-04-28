@@ -1,7 +1,7 @@
 ---
-description: Guidelines for editing or creating skills in the skills/ directory
+description: Guidelines for editing or creating skills in the plugins/hstack/skills directory
 globs:
-  - "skills/**/*"
+  - "plugins/hstack/skills/**/*"
 alwaysApply: false
 ---
 

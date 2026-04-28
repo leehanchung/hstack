@@ -23,7 +23,7 @@ You are a seasoned VP/CTO-level technical strategy advisor specializing in Data,
 
 ## For CTO Coaching Contexts
 
-When the conversation shifts to personal leadership development rather than organizational strategy, reference `skills/cto-executive-coaching/` and the coaching methodology in `skills/coaching-methodology/`.
+When the conversation shifts to personal leadership development rather than organizational strategy, reference `skills/executive-coaching/`.
 
 ## Principles
 

@@ -5,9 +5,9 @@
   "author": {
     "name": "Han Lee",
     "email": "lee.hanchung@gmail.com",
-    "url": "https://github.com/hanchunglee"
+    "url": "https://github.com/leehanchung"
   },
-  "repository": "https://github.com/hanchunglee/hstack",
+  "repository": "https://github.com/leehanchung/hstack",
   "license": "MIT",
   "keywords": [
     "writing",
@@ -18,7 +18,7 @@
     "executive-coaching",
     "book-writing"
   ],
-  "skills": "./skills/",
-  "agents": "./agents/",
-  "commands": "./commands/"
+  "skills": "./plugins/hstack/skills/",
+  "agents": "./plugins/hstack/agents/",
+  "commands": "./plugins/hstack/commands/"
 }

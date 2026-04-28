@@ -2,7 +2,7 @@
 
 Personal agent plugin monorepo — one set of skills, three platforms.
 
-Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** without any build step. Each platform reads its own manifest and discovers the shared `skills/` directory.
+Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** without any build step. Each platform reads its own manifest and discovers the shared `plugins/hstack/skills/` directory.
 
 ## Skills
 
@@ -21,18 +21,21 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 hstack/
 ├── .claude-plugin/
 │   └── plugin.json           # Claude Code manifest
-├── .codex-plugin/
-│   └── plugin.json           # OpenAI Codex manifest
 ├── .cursor-plugin/
 │   └── plugin.json           # Cursor manifest
-├── skills/                   # Shared skills (all platforms read this)
-│   └── <skill-name>/
-│       ├── SKILL.md          # Entry point with frontmatter
-│       └── references/       # Supporting materials
+├── .agents/plugins/
+│   └── marketplace.json      # OpenAI Codex marketplace catalog
+├── plugins/hstack/           # Shared plugin payload
+│   ├── .codex-plugin/
+│   │   └── plugin.json       # OpenAI Codex manifest
+│   ├── skills/               # Shared skills
+│   │   └── <skill-name>/
+│   │       ├── SKILL.md      # Entry point with frontmatter
+│   │       └── references/   # Supporting materials
+│   ├── agents/               # Custom agent definitions
+│   └── commands/             # Slash commands
 ├── rules/                    # Cursor .mdc rules (auto-attach by file type)
 │   └── <skill-name>.mdc
-├── agents/                   # Custom agent definitions (per-platform)
-├── commands/                 # Slash commands
 ├── LICENSE
 └── README.md
 ```
@@ -41,9 +44,9 @@ hstack/
 
 | Platform | Manifest | Skills | Extras |
 |----------|----------|--------|--------|
-| **Claude Code** | `.claude-plugin/plugin.json` | `skills/*/SKILL.md` | `agents/`, `commands/` |
-| **OpenAI Codex** | `.codex-plugin/plugin.json` | `skills/*/SKILL.md` | `agents/`, `interface` branding |
-| **Cursor** | `.cursor-plugin/plugin.json` | `skills/*/SKILL.md` | `rules/*.mdc` with glob triggers |
+| **Claude Code** | `.claude-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `plugins/hstack/agents/`, `plugins/hstack/commands/` |
+| **OpenAI Codex** | `.agents/plugins/marketplace.json` -> `plugins/hstack/.codex-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `plugins/hstack/agents/`, `interface` branding |
+| **Cursor** | `.cursor-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `rules/*.mdc` with glob triggers |
 
 All three platforms use the same `SKILL.md` frontmatter format:
 
@@ -70,8 +73,10 @@ claude plugin install /path/to/hstack
 ### OpenAI Codex
 
 ```bash
-codex plugin install /path/to/hstack
+codex marketplace add leehanchung/hstack
 ```
+
+In the Codex app, add the GitHub marketplace source `leehanchung/hstack`, then enable the HStack plugin.
 
 ### Cursor
 
@@ -79,8 +84,8 @@ Symlink or copy into your Cursor plugins directory. Rules in `rules/` auto-attac
 
 ## Adding a New Skill
 
-1. Create `skills/<skill-name>/SKILL.md` with frontmatter
-2. Add reference files in `skills/<skill-name>/references/`
+1. Create `plugins/hstack/skills/<skill-name>/SKILL.md` with frontmatter
+2. Add reference files in `plugins/hstack/skills/<skill-name>/references/`
 3. Create `rules/<skill-name>.mdc` for Cursor glob-based auto-attachment
 4. Update the skill table in this README
 

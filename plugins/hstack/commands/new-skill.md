@@ -8,11 +8,11 @@ Create a new skill in this monorepo. Follow these steps:
 1. Ask for: skill name (kebab-case), one-line description, and relevant file-type globs (if any)
 2. Create the directory structure:
    ```
-   skills/<name>/
+   plugins/hstack/skills/<name>/
    ├── SKILL.md
    └── references/
    ```
-3. Write `skills/<name>/SKILL.md` with proper frontmatter:
+3. Write `plugins/hstack/skills/<name>/SKILL.md` with proper frontmatter:
    ```yaml
    ---
    name: <name>

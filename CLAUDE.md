@@ -6,10 +6,11 @@ Personal monorepo of agent skills, commands, and rules for Claude Code, OpenAI C
 
 ```
 hstack/
-├── .claude-plugin/plugin.json   # Claude Code manifest
+├── .claude-plugin/marketplace.json # Claude Code marketplace catalog
 ├── .cursor-plugin/plugin.json   # Cursor manifest
 ├── .agents/plugins/marketplace.json # OpenAI Codex marketplace catalog
 ├── plugins/hstack/              # Shared plugin payload
+│   ├── .claude-plugin/plugin.json # Claude Code manifest
 │   ├── .codex-plugin/plugin.json # OpenAI Codex manifest
 │   ├── skills/                  # Shared skill definitions
 │   │   └── <name>/
@@ -66,19 +67,19 @@ Slash commands in `plugins/hstack/commands/` are markdown files. The filename be
 ## Development Workflow
 
 - No build step — all platforms read markdown directly
-- Test locally with `claude plugin install .` (Claude Code), `codex marketplace add /path/to/hstack` (Codex), or symlink into Cursor plugins
-- Keep manifests in sync: if you add a new top-level directory, add it to all three `plugin.json` files
+- Test locally with `claude plugin marketplace add /path/to/hstack --scope local && claude plugin install hstack --scope local` (Claude Code), `codex plugin marketplace add /path/to/hstack` (Codex), or symlink into Cursor plugins
+- Keep platform manifests in sync when shared payload structure changes
 
 ## Platform Manifest Locations
 
 | Platform | Manifest | Agent Instructions |
 |----------|----------|--------------------|
-| Claude Code | `.claude-plugin/plugin.json` | `CLAUDE.md` (this file) |
+| Claude Code | `.claude-plugin/marketplace.json` -> `plugins/hstack/.claude-plugin/plugin.json` | `CLAUDE.md` (this file) |
 | OpenAI Codex | `.agents/plugins/marketplace.json` -> `plugins/hstack/.codex-plugin/plugin.json` | `AGENTS.md` |
 | Cursor | `.cursor-plugin/plugin.json` | `.cursor/rules/*.mdc` |
 
 ## Do Not
 
-- Put anything other than `plugin.json` inside `.claude-plugin/`, `plugins/hstack/.codex-plugin/`, or `.cursor-plugin/`
+- Put anything other than the expected manifest JSON inside `.claude-plugin/`, `plugins/hstack/.claude-plugin/`, `plugins/hstack/.codex-plugin/`, or `.cursor-plugin/`
 - Duplicate skill content across platforms — write it once in `plugins/hstack/skills/`, generate platform adapters
 - Add secrets, API keys, or `.env` files to this repo

@@ -17,8 +17,5 @@
     "tech-strategy",
     "executive-coaching",
     "book-writing"
-  ],
-  "skills": "./plugins/hstack/skills/",
-  "agents": "./plugins/hstack/agents/",
-  "commands": "./plugins/hstack/commands/"
+  ]
 }

@@ -6,10 +6,11 @@ Personal monorepo of agent skills, commands, and rules for Claude Code, OpenAI C
 
 ```
 hstack/
-├── .claude-plugin/plugin.json   # Claude Code manifest
+├── .claude-plugin/marketplace.json # Claude Code marketplace catalog
 ├── .cursor-plugin/plugin.json   # Cursor manifest
 ├── .agents/plugins/marketplace.json # OpenAI Codex marketplace catalog
 ├── plugins/hstack/              # Shared plugin payload
+│   ├── .claude-plugin/plugin.json # Claude Code manifest
 │   ├── .codex-plugin/plugin.json # OpenAI Codex manifest
 │   ├── skills/                  # Shared skill definitions
 │   │   └── <name>/
@@ -59,8 +60,28 @@ Agent definitions in `plugins/hstack/agents/` are markdown files that define per
 
 Slash commands in `plugins/hstack/commands/` are markdown files. The filename becomes the command name.
 
+## Codex Compatibility
+
+- Marketplace metadata lives in `.agents/plugins/marketplace.json`
+- The Codex plugin root is `plugins/hstack/`
+- The Codex manifest must stay at `plugins/hstack/.codex-plugin/plugin.json`
+- Test a checkout with `codex plugin marketplace add /path/to/hstack`
+- Codex currently discovers skills from `plugins/hstack/skills/`; keep Claude/Cursor-only agents and commands out of the Codex manifest unless Codex adds manifest support for them
+
+## Claude Compatibility
+
+- Marketplace metadata lives in `.claude-plugin/marketplace.json`
+- The Claude plugin root is `plugins/hstack/`
+- The Claude manifest must stay at `plugins/hstack/.claude-plugin/plugin.json`
+- Test a checkout with `claude plugin marketplace add /path/to/hstack --scope local` and `claude plugin install hstack --scope local`
+- Claude auto-discovers `skills/`, `agents/`, and `commands/` from the plugin root
+
 ## Do Not
 
-- Put anything other than `plugin.json` inside manifest directories
+- Put anything other than the expected manifest JSON inside manifest directories
 - Duplicate skill content across platforms — write once in `plugins/hstack/skills/`
 - Add secrets, API keys, or `.env` files to this repo
+
+## Imported Claude Cowork project instructions
+
+This is my personal agent skills and plugin folder

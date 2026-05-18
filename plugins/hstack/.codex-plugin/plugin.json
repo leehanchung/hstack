@@ -1,7 +1,7 @@
 {
   "name": "hstack",
   "version": "1.0.0",
-  "description": "Personal agent skills for writing, coaching, and technical strategy. Includes ML paper writing, copy editing, executive coaching, O'Reilly Radar analysis, Manning book authoring, and data/AI strategy frameworks.",
+  "description": "Personal writing, coaching, and technical strategy skills.",
   "author": {
     "name": "Han Lee",
     "email": "lee.hanchung@gmail.com",
@@ -20,11 +20,10 @@
     "book-writing"
   ],
   "skills": "./skills/",
-  "agents": "./agents/",
   "interface": {
     "displayName": "HStack Skills",
     "shortDescription": "Writing, coaching, and technical strategy skills",
-    "longDescription": "A curated collection of agent skills for ML/AI paper writing, copy editing, executive coaching, O'Reilly Radar-style analysis, Manning book authoring, and data/AI tech strategy. Each skill includes detailed workflows, reference materials, and domain-specific best practices.",
+    "longDescription": "A curated collection of skills for ML paper writing, copy editing, executive coaching, Manning book authoring, tech analysis, and Data/AI strategy.",
     "developerName": "Han Lee",
     "category": "Productivity",
     "capabilities": [
@@ -35,9 +34,11 @@
     "privacyPolicyURL": "https://github.com/leehanchung/hstack",
     "termsOfServiceURL": "https://github.com/leehanchung/hstack",
     "defaultPrompt": [
-      "Use HStack skills for writing, coaching, and technical strategy"
+      "Use HStack skills."
     ],
     "brandColor": "#2563EB",
+    "composerIcon": "./assets/hstack.svg",
+    "logo": "./assets/hstack.svg",
     "screenshots": []
   }
 }

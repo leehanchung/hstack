@@ -20,12 +20,14 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 ```
 hstack/
 ├── .claude-plugin/
-│   └── plugin.json           # Claude Code manifest
+│   └── marketplace.json      # Claude Code marketplace catalog
 ├── .cursor-plugin/
 │   └── plugin.json           # Cursor manifest
 ├── .agents/plugins/
 │   └── marketplace.json      # OpenAI Codex marketplace catalog
 ├── plugins/hstack/           # Shared plugin payload
+│   ├── .claude-plugin/
+│   │   └── plugin.json       # Claude Code manifest
 │   ├── .codex-plugin/
 │   │   └── plugin.json       # OpenAI Codex manifest
 │   ├── skills/               # Shared skills
@@ -44,8 +46,8 @@ hstack/
 
 | Platform | Manifest | Skills | Extras |
 |----------|----------|--------|--------|
-| **Claude Code** | `.claude-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `plugins/hstack/agents/`, `plugins/hstack/commands/` |
-| **OpenAI Codex** | `.agents/plugins/marketplace.json` -> `plugins/hstack/.codex-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `plugins/hstack/agents/`, `interface` branding |
+| **Claude Code** | `.claude-plugin/marketplace.json` -> `plugins/hstack/.claude-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `plugins/hstack/agents/`, `plugins/hstack/commands/` |
+| **OpenAI Codex** | `.agents/plugins/marketplace.json` -> `plugins/hstack/.codex-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `interface` branding |
 | **Cursor** | `.cursor-plugin/plugin.json` | `plugins/hstack/skills/*/SKILL.md` | `rules/*.mdc` with glob triggers |
 
 All three platforms use the same `SKILL.md` frontmatter format:
@@ -66,17 +68,37 @@ allowed-tools: "Read,Write,Edit,Bash,Glob,Grep,WebSearch,WebFetch"
 ### Claude Code
 
 ```bash
-claude plugin install /path/to/hstack
+claude plugin marketplace add leehanchung/hstack
+claude plugin install hstack
 # Skills appear as /hstack:skill-name
+```
+
+For local testing from a checkout:
+
+```bash
+claude plugin marketplace add /path/to/hstack --scope local
+claude plugin install hstack --scope local
+```
+
+For one-off session testing without installing:
+
+```bash
+claude --plugin-dir /path/to/hstack/plugins/hstack
 ```
 
 ### OpenAI Codex
 
 ```bash
-codex marketplace add leehanchung/hstack
+codex plugin marketplace add leehanchung/hstack
 ```
 
-In the Codex app, add the GitHub marketplace source `leehanchung/hstack`, then enable the HStack plugin.
+For local testing from a checkout:
+
+```bash
+codex plugin marketplace add /path/to/hstack
+```
+
+In the Codex app, add the GitHub marketplace source `leehanchung/hstack`, then enable the HStack plugin. Codex reads `.agents/plugins/marketplace.json`, resolves `./plugins/hstack`, and loads `plugins/hstack/.codex-plugin/plugin.json`.
 
 ### Cursor
 

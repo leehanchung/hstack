@@ -1,7 +1,7 @@
 {
   "name": "hstack",
   "version": "1.0.0",
-  "description": "Personal agent skills for writing, coaching, and technical strategy. Includes ML paper writing, copy editing, executive coaching, O'Reilly Radar analysis, Manning book authoring, and data/AI strategy frameworks.",
+  "description": "Personal agent skills for writing, coaching, and technical strategy. Includes ML paper writing, copy editing, executive coaching, O'Reilly Radar analysis, Manning book authoring, data/AI strategy frameworks, and PPTD/PPTX presentation building.",
   "author": {
     "name": "Han Lee",
     "email": "lee.hanchung@gmail.com",
@@ -16,6 +16,8 @@
     "copy-editing",
     "tech-strategy",
     "executive-coaching",
-    "book-writing"
+    "book-writing",
+    "presentations",
+    "pptx"
   ]
 }

@@ -16,7 +16,9 @@
     "copy-editing",
     "tech-strategy",
     "executive-coaching",
-    "book-writing"
+    "book-writing",
+    "presentations",
+    "pptx"
   ],
   "skills": "./plugins/hstack/skills/",
   "rules": "./rules/",

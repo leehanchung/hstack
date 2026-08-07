@@ -13,6 +13,7 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 | `executive-coaching` | Executive coaching frameworks: GROW model, NVC, active listening, burnout prevention, co-founder dynamics, CTO transition |
 | `manning-tech-book-writing` | Manning Publications style, chapter structure, and writing standards |
 | `ml-paper-writing` | Publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM — full writing process, citation verification, LaTeX, conference checklists |
+| `open-kimi-ppt` | Create, edit, replicate, and export presentations via Moonshot AI's PPTD format — delivers a self-contained `.pptd` project plus a locally exported `.pptx` (vendored from [jinwyp/open-ppt-skill](https://github.com/jinwyp/open-ppt-skill), MIT) |
 | `tech-writing` | Strategic tech blog posts and industry analysis — short-form (800-1,500 words) and long-form (2,000-4,000 words) with concision rules and AI pattern avoidance |
 
 ## Repository Structure
@@ -114,3 +115,7 @@ Symlink or copy into your Cursor plugins directory. Rules in `rules/` auto-attac
 ## License
 
 MIT
+
+The `open-kimi-ppt` skill is vendored from [jinwyp/open-ppt-skill](https://github.com/jinwyp/open-ppt-skill)
+and remains under its own MIT license — see
+[`plugins/hstack/skills/open-kimi-ppt/ATTRIBUTION.md`](plugins/hstack/skills/open-kimi-ppt/ATTRIBUTION.md).

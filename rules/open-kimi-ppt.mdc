@@ -1,0 +1,7 @@
+---
+description: Create, edit, replicate, and export presentations via Moonshot AI's PPTD format. Delivers both a self-contained .pptd project directory and a locally exported .pptx with fade transitions. Use for any PPT, PPTX, slide deck, infographic, or poster task.
+globs: **/*.pptd,**/*.page
+alwaysApply: false
+---
+
+See `plugins/hstack/skills/open-kimi-ppt/SKILL.md` for the full skill.

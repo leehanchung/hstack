@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.9"
+# dependencies = ["pyyaml", "pillow", "websocket-client"]
+# ///
 """Export a PPTD project as page images through the local neo-ppt mirror for visual QA.
 
 Reuses the localhost local-editor host from export_pptx.py (no www.kimi.com), chooses
 图片 in the export dialog, captures the images ZIP, unzips it, and stitches all pages
 into a single overview image that a multimodal model can review.
+
+Run directly and missing Python packages are installed on demand; or run under uv
+(`uv run export_images.py ...`) to resolve them from the inline metadata above.
 """
 
 from __future__ import annotations
@@ -28,6 +35,8 @@ from export_pptx import (
     build_payload,
     default_downloads_dir,
     ensure_agent_browser,
+    ensure_module,
+    download_via_click,
     find_download,
     find_manifest,
     log,
@@ -72,21 +81,10 @@ ACTIVE_FORMAT_JS = """
 
 
 def ensure_pillow() -> Tuple[Any, Any, Any]:
-    try:
-        from PIL import Image, ImageDraw, ImageFont
+    ensure_module("PIL", "pillow", "stitching the page overview image")
+    from PIL import Image, ImageDraw, ImageFont
 
-        return Image, ImageDraw, ImageFont
-    except ImportError:
-        log("Pillow is required for stitching; installing pillow with pip --user")
-        process = run_command(
-            [sys.executable, "-m", "pip", "install", "--user", "pillow"],
-            timeout=300,
-        )
-        if process.returncode != 0:
-            raise ExportError(f"failed to install Pillow:\n{process.stdout[-2000:]}")
-        from PIL import Image, ImageDraw, ImageFont
-
-        return Image, ImageDraw, ImageFont
+    return Image, ImageDraw, ImageFont
 
 
 def is_image_zip(path: Path) -> bool:
@@ -177,21 +175,7 @@ def stitch_overview(
 
 
 def ensure_websocket() -> Any:
-    try:
-        import websocket
-
-        return websocket
-    except ImportError:
-        log("websocket-client is required for dialog automation; installing with pip --user")
-        process = run_command(
-            [sys.executable, "-m", "pip", "install", "--user", "websocket-client"],
-            timeout=300,
-        )
-        if process.returncode != 0:
-            raise ExportError(f"failed to install websocket-client:\n{process.stdout[-2000:]}")
-        import websocket
-
-        return websocket
+    return ensure_module("websocket", "websocket-client", "driving the export dialog")
 
 
 def browser_cdp_url(browser: BrowserSession) -> str:
@@ -335,15 +319,15 @@ def export_images(
             select_image_format(browser)
             dialog = wait_for_export_dialog(browser)
 
-            started_at = time.time() - 1.0
             download_ref = ref_by_name(dialog, "下载", "button")
             log("rendering page images in the local editor")
-            browser.run(["click", f"@{download_ref}"], timeout=300)
-            downloaded = find_download(
+            downloaded = download_via_click(
+                browser,
+                download_ref,
+                download_dir / "images.zip",
                 (downloads, download_dir, temp_dir),
-                timeout=240,
+                timeout=300,
                 accept=is_image_zip,
-                since=started_at,
             )
         finally:
             browser.close()

@@ -1,28 +1,42 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.9"
+# dependencies = ["pyyaml"]
+# ///
 """Export a PPTD project to PPTX.
 
 Default path (preferred): local patched official WASM writer
   scripts/local-export/export-pptd.mjs --no-sign
   → offline, no cookie, no signature API, no browser UI.
 
-Optional --browser path: local neo-ppt mirror via agent-browser
-  (same UI as `npx open-kimi-ppt-skill serve`, no www.kimi.com).
+Optional --browser path: the skill-bundled neo-ppt mirror via agent-browser
+  (same UI as `node scripts/serve.mjs`, no www.kimi.com).
 
 Image QA (`export_images.py`) uses the same local editor host.
+
+Run directly (`python3 export_pptx.py ...`) and missing Python packages are
+installed on demand; or run under uv (`uv run export_pptx.py ...`) to resolve
+them from the inline script metadata above without touching the system env.
+
+For a PPTX export with no Python at all, call the Node writer directly:
+  node scripts/local-export/export-pptd.mjs <project> -o out.pptx --no-sign
 """
 
 from __future__ import annotations
 
 import argparse
 import base64
+import importlib
 import json
 import mimetypes
 import os
 import re
 import shutil
+import site
 import socket
 import subprocess
 import sys
+import sysconfig
 import tempfile
 import threading
 import time
@@ -55,9 +69,9 @@ MIN_AGENT_BROWSER_VERSION = (0, 33, 2)
 MIN_NODE_MAJOR = 18
 NODE_INSTALL_HINT = "Install Node.js 18+ from https://nodejs.org, then retry."
 EDITOR_MISSING_HINT = (
-    "local neo-ppt editor not found. Re-run "
-    "`npx open-kimi-ppt-skill install` (copies editor into the skill) "
-    "or set OPEN_KIMI_PPT_EDITOR to the editor directory."
+    "local neo-ppt editor not found. It normally ships with this skill at "
+    "<skill>/editor/; set OPEN_KIMI_PPT_EDITOR to an editor directory to override. "
+    "The default WASM export path does not need it — only --browser and image QA do."
 )
 
 
@@ -144,23 +158,119 @@ def default_downloads_dir() -> Path:
     return home / "Downloads"
 
 
-def ensure_pyyaml() -> Any:
+FALLBACK_ENV = Path.home() / ".cache" / "open-kimi-ppt" / "py"
+
+
+def _refresh_import_paths() -> None:
+    """Make packages installed during this process importable.
+
+    site.py only records site-packages directories that existed at interpreter
+    start, so a fresh `pip install --user` is invisible without this.
+    """
+    for path in (site.getusersitepackages(), sysconfig.get_path("purelib")):
+        if path and path not in sys.path:
+            sys.path.append(path)
     try:
-        import yaml
-    except ImportError:
-        log("PyYAML is required; installing pyyaml with pip --user")
-        process = run_command(
-            [sys.executable, "-m", "pip", "install", "--user", "pyyaml"],
-            timeout=300,
+        site.main()
+    except Exception:  # pragma: no cover - site.main is best effort
+        pass
+    importlib.invalidate_caches()
+
+
+def _fallback_env_python() -> Path:
+    bindir = "Scripts" if os.name == "nt" else "bin"
+    return FALLBACK_ENV / bindir / ("python.exe" if os.name == "nt" else "python")
+
+
+def _fallback_env_site_packages() -> Optional[Path]:
+    """Create (once) a private venv for hosts where no in-place install works."""
+    python = _fallback_env_python()
+    if not python.is_file():
+        FALLBACK_ENV.parent.mkdir(parents=True, exist_ok=True)
+        process = run_command([sys.executable, "-m", "venv", str(FALLBACK_ENV)], timeout=300)
+        if process.returncode != 0 or not python.is_file():
+            return None
+    try:
+        result = subprocess.run(
+            [str(python), "-c", "import sysconfig; print(sysconfig.get_path('purelib'))"],
+            text=True,
+            capture_output=True,
+            timeout=60,
         )
+    except Exception:
+        return None
+    if result.returncode != 0:
+        return None
+    return Path(result.stdout.strip()) if result.stdout.strip() else None
+
+
+def ensure_module(import_name: str, package: str, purpose: str) -> Any:
+    """Import `import_name`, installing `package` on demand.
+
+    Tries, in order: uv (fast, no system mutation), `pip --user`, `pip --user
+    --break-system-packages` (PEP 668 hosts such as Homebrew/Debian python), and
+    finally a private venv under ~/.cache/open-kimi-ppt/py. Every strategy is
+    followed by an import-path refresh so the running process picks the package up.
+    """
+    try:
+        return importlib.import_module(import_name)
+    except ImportError:
+        pass
+
+    log(f"{package} is required for {purpose}; installing it now")
+    attempts: List[Tuple[str, List[str]]] = []
+    uv = shutil.which("uv")
+    if uv:
+        attempts.append(("uv", [uv, "pip", "install", "--python", sys.executable, package]))
+    attempts.append(("pip --user", [sys.executable, "-m", "pip", "install", "--user", package]))
+    attempts.append(
+        (
+            "pip --user --break-system-packages",
+            [sys.executable, "-m", "pip", "install", "--user", "--break-system-packages", package],
+        )
+    )
+
+    failures: List[str] = []
+    for label, command in attempts:
+        process = run_command(command, timeout=300)
         if process.returncode != 0:
-            raise ExportError(
-                "failed to install PyYAML with pip --user:\n"
-                f"{process.stdout[-2000:]}\n"
-                "Install it manually with: python3 -m pip install --user pyyaml"
-            )
-        import yaml
-    return yaml
+            failures.append(f"[{label}] {process.stdout[-800:]}")
+            continue
+        _refresh_import_paths()
+        try:
+            return importlib.import_module(import_name)
+        except ImportError:
+            failures.append(f"[{label}] installed, but {import_name} is still not importable")
+
+    purelib = _fallback_env_site_packages()
+    if purelib is not None:
+        process = run_command(
+            [str(_fallback_env_python()), "-m", "pip", "install", package], timeout=300
+        )
+        if process.returncode == 0:
+            if str(purelib) not in sys.path:
+                sys.path.append(str(purelib))
+            importlib.invalidate_caches()
+            try:
+                return importlib.import_module(import_name)
+            except ImportError:
+                failures.append(f"[venv] installed into {purelib}, but import still failed")
+        else:
+            failures.append(f"[venv] {process.stdout[-800:]}")
+
+    raise ExportError(
+        f"failed to install {package} (needed for {purpose}). Tried uv, pip --user, "
+        f"pip --break-system-packages, and a private venv.\n"
+        + "\n".join(failures)
+        + f"\n\nInstall it manually, e.g.: uv pip install --python {sys.executable} {package}"
+        f"\n            or: {sys.executable} -m pip install --user {package}"
+        f"\nOr run the script under uv, which resolves dependencies automatically:"
+        f"\n            uv run --with {package} {Path(__file__).name} ..."
+    )
+
+
+def ensure_pyyaml() -> Any:
+    return ensure_module("yaml", "pyyaml", "reading .pptd / .page YAML")
 
 
 yaml = ensure_pyyaml()
@@ -571,6 +681,41 @@ def is_pptx(path: Path) -> bool:
         return False
 
 
+def download_via_click(
+    browser: "BrowserSession",
+    ref: str,
+    target: Path,
+    search_roots: Iterable[Path],
+    *,
+    timeout: int = 300,
+    accept: Callable[[Path], bool] = None,  # type: ignore[assignment]
+) -> Path:
+    """Click a download button and return the saved file.
+
+    Prefers `agent-browser download <sel> <path>`, which captures the download
+    through CDP and writes it exactly where we ask. Headless Chrome does not
+    reliably persist downloads into the user's Downloads folder, so the legacy
+    click-then-poll-the-filesystem path is only a fallback for older
+    agent-browser builds that lack the `download` verb.
+    """
+    accept = accept or is_pptx
+    target.parent.mkdir(parents=True, exist_ok=True)
+    started_at = time.time() - 1.0
+
+    process = browser.run(["download", f"@{ref}", str(target)], timeout=timeout, check=False)
+    if process.returncode == 0 and target.is_file() and target.stat().st_size > 0:
+        if accept(target):
+            return target
+        raise ExportError(
+            f"downloaded file did not match the expected type: {target} "
+            f"({target.stat().st_size} bytes)"
+        )
+
+    log("agent-browser download verb unavailable or failed; falling back to click + poll")
+    browser.run(["click", f"@{ref}"], timeout=timeout)
+    return find_download(search_roots, timeout=240, accept=accept, since=started_at)
+
+
 def find_download(
     search_roots: Iterable[Path],
     timeout: float = 150.0,
@@ -960,16 +1105,14 @@ def export_pptx(
             elif embed_fonts:
                 log("warning: the export dialog exposed no font switch")
 
-            # Plain click (not agent-browser `download`) so Chrome saves to the
-            # default Downloads folder; --download-path is broken on some Windows setups.
-            started_at = time.time() - 1.0
             download_ref = ref_by_name(dialog, "下载", "button")
             log("generating PPTX in the local editor")
-            browser.run(["click", f"@{download_ref}"], timeout=180)
-            downloaded = find_download(
+            downloaded = download_via_click(
+                browser,
+                download_ref,
+                download_dir / "export.pptx",
                 (downloads, download_dir, temp_dir),
-                timeout=90,
-                since=started_at,
+                timeout=180,
             )
             shutil.copy2(downloaded, output)
             if keep_download:

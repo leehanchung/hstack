@@ -63,6 +63,8 @@ function resolveDefaultWasmPath() {
   const candidates = [
     path.join(__dirname, 'pptd_wasm_bg.wasm'), // installed skill copy
     path.join(__dirname, CANONICAL_WASM_NAME),
+    // skill-local editor mirror: scripts/local-export → skill root
+    path.join(__dirname, '..', '..', 'editor', 'neo-ppt', 'assets', CANONICAL_WASM_NAME),
     // monorepo / npm package: scripts/local-export → package root
     path.join(__dirname, '..', '..', '..', '..', 'editor', 'neo-ppt', 'assets', CANONICAL_WASM_NAME),
   ];

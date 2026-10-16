@@ -8,6 +8,7 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 
 | Skill | Description |
 |-------|-------------|
+| `concept-infographic` | Source-grounded visual explanations of paper mechanisms, mathematics, and conceptual relationships, with adaptive layouts, checked equations, and a bundled illustrated example |
 | `copy-editing` | Professional copy editing, grammar, style guide, AI writing pattern detection, and verbosity diagnosis |
 | `data-ai-tech-strategy` | Tech strategy and engineering principles for Data/AI/ML organizations |
 | `executive-coaching` | Executive coaching frameworks: GROW model, NVC, active listening, burnout prevention, co-founder dynamics, CTO transition |
@@ -15,6 +16,8 @@ Works as a native plugin on **Claude Code**, **OpenAI Codex**, and **Cursor** wi
 | `ml-paper-writing` | Publication-ready ML/AI research papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM — full writing process, citation verification, LaTeX, conference checklists |
 | `open-kimi-ppt` | Create, edit, replicate, and export presentations via Moonshot AI's PPTD format — delivers a self-contained `.pptd` project plus a locally exported `.pptx`. Fully offline; needs only Node.js 18+ (vendored from [jinwyp/open-ppt-skill](https://github.com/jinwyp/open-ppt-skill), MIT) |
 | `tech-writing` | Strategic tech blog posts and industry analysis — short-form (800-1,500 words) and long-form (2,000-4,000 words) with concision rules and AI pattern avoidance |
+
+For example, ask `concept-infographic` to explain a paper subsection, Bradley–Terry loss with a numerical example, or Conway's law with corresponding team and system diagrams. It produces a standalone infographic plus a source/verification brief. Raster rendering requires an available image-generation tool; a host without one can prepare the brief and production prompt. Use `open-kimi-ppt` when the requested output is a slide deck or PPTD/PPTX project.
 
 ## Repository Structure
 

@@ -1,6 +1,6 @@
 ---
 name: open-kimi-ppt
-description: Create, edit, replicate, read, and export presentations. For every PPT task, the default deliverables are BOTH (1) a self-contained PPTD project folder containing the .pptd manifest plus pages/media dependencies and (2) a locally generated .pptx with embedded fonts and fade slide transitions. Use for any presentation, PowerPoint, PPT/PPTX, slide deck, PPTD, infographic, or poster task unless the user explicitly requests another format. Deliver with normal local file/folder links using absolute paths.
+description: Create, edit, replicate, read, and export presentations. For every PPT task, the default deliverables are BOTH (1) a self-contained PPTD project folder containing the .pptd manifest plus pages/media dependencies and (2) a locally generated .pptx with embedded fonts and fade slide transitions. Use for presentations, PowerPoint, PPT/PPTX, slide decks, PPTD, and infographics or posters requested as presentation deliverables. For standalone concept infographics, use concept-infographic. Deliver with normal local file/folder links using absolute paths.
 allowed-tools: "Read,Write,Edit,Bash,Glob,Grep,WebSearch,WebFetch"
 ---
 
@@ -94,7 +94,7 @@ When generating a PPT, adopt different production approaches for different user 
 2. Produce the presentation based on the above
 
 #### Generating content in other formats
-- When the user explicitly asks for an infographic, poster, or a highly visual single-page design, read `references/general-poster.md` and implement it as a single-page or few-page editable PPTD; when the user only asks for an image, still build it with PPTD first, then output the image via screenshot or rendering. Do not load this reference file for ordinary PPT requests.
+- When the user asks for an infographic, poster, or highly visual single-page design as a presentation or PPTD/PPTX deliverable, read `references/general-poster.md` and implement it as a single-page or few-page editable PPTD. If an image export is also requested for that presentation, output it via screenshot or rendering. For standalone concept infographics, use `concept-infographic`; do not require a PPTD intermediate for an image-only request. Do not load this reference file for ordinary PPT requests.
 
 ##### Design system
 1. Read the general constraints section of the `references/slides_categories.md` guide, and read the scenario document corresponding to the user's query as the design foundation
